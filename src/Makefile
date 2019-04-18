@@ -174,3 +174,9 @@ onlinebin: base matrix util feat tree gmm transform sgmm2 fstext hmm lm decoder 
 online: decoder gmm transform feat matrix util base lat hmm tree
 online2: decoder gmm transform feat matrix util base lat hmm tree ivector cudamatrix nnet2 nnet3 chain
 kws: base util hmm tree matrix lat
+mfcc: feat base util matrix
+	g++ -std=c++11 -I. -isystem ../tools/openfst-1.6.7/include -O1  -Wall -Wno-sign-compare -Wno-unused-local-typedefs -Wno-deprecated-declarations -Winit-self -DKALDI_DOUBLEPRECISION=0 -DHAVE_EXECINFO_H=1 -DHAVE_CXXABI_H -DHAVE_ATLAS -I../tools/ATLAS_headers/include -msse -msse2 -pthread -g  -fPIC -DHAVE_CUDA -I/usr/local/cuda/include -fPIC -pthread -isystem ../tools/openfst-1.6.7/include featbin/compute-mfcc-feats.cc -Llib -lkaldi-base -lkaldi-util -lkaldi-matrix -lkaldi-feat -o featbin/compute-mfcc-feats
+cmvn: feat base util matrix transform
+	g++ -std=c++11 -I. -isystem ../tools/openfst-1.6.7/include -O1  -Wall -Wno-sign-compare -Wno-unused-local-typedefs -Wno-deprecated-declarations -Winit-self -DKALDI_DOUBLEPRECISION=0 -DHAVE_EXECINFO_H=1 -DHAVE_CXXABI_H -DHAVE_ATLAS -I../tools/ATLAS_headers/include -msse -msse2 -pthread -g  -fPIC -DHAVE_CUDA -I/usr/local/cuda/include -fPIC -pthread -isystem ../tools/openfst-1.6.7/include featbin/compute-cmvn-stats.cc -Llib -lkaldi-base -lkaldi-util -lkaldi-matrix -lkaldi-feat -lkaldi-transform -o featbin/compute-cmvn-stats
+pitch: feat base util matrix
+	g++ -std=c++11 -I. -isystem ../tools/openfst-1.6.7/include -O1  -Wall -Wno-sign-compare -Wno-unused-local-typedefs -Wno-deprecated-declarations -Winit-self -DKALDI_DOUBLEPRECISION=0 -DHAVE_EXECINFO_H=1 -DHAVE_CXXABI_H -DHAVE_ATLAS -I../tools/ATLAS_headers/include -msse -msse2 -pthread -g  -fPIC -DHAVE_CUDA -I/usr/local/cuda/include -fPIC -pthread -isystem ../tools/openfst-1.6.7/include featbin/compute-kaldi-pitch-feats.cc -Llib -lkaldi-base -lkaldi-util -lkaldi-matrix -lkaldi-feat -o featbin/compute-kaldi-pitch-feats
